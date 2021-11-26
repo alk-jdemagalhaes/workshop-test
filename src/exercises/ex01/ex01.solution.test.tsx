@@ -4,6 +4,10 @@ import { render } from "@testing-library/react";
 import Ex01 from "./";
 
 describe("Ex01 : Basic rendering and testing", () => {
+  beforeEach(() => {
+    expect.hasAssertions();
+  });
+
   it('should find in the Ex01 Component, the text: "Hello World !"', () => {
     const screen = render(<Ex01 />);
 
