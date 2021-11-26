@@ -4,6 +4,10 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import Ex02 from "./";
 
 describe("Ex02", () => {
+  beforeEach(() => {
+    expect.hasAssertions();
+  });
+
   it("should check if the component is loaded", async () => {
     /*  The component takes time to load !
      *  Check if he's loading, then wait for his loading.
