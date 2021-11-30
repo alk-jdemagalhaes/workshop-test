@@ -8,7 +8,7 @@ One of the complexity in testing is making sure we have the right state and loca
 
 We use our utility `mockProvider` to render a component with a built-in `<Provider />`. That allows us to just add our state in, and you get your component connected without anything else needed.
 
-```
+```tsx
 import React from "react";
 import { screen } from "@testing-library/react";
 import { mockProvider } from "utils/tests/mocks";
@@ -38,7 +38,7 @@ describe("<MyComponent />", () => {
 
 We use our utility `mockProviderWithStore` that allows us to extract the store and use it to test what actions we have dispatched.
 
-```
+```tsx
 import React from "react";
 import { screen } from "@testing-library/react";
 import { mockProvider } from "utils/tests/mocks";
@@ -74,7 +74,7 @@ describe("<MyComponent />", () => {
 
 We sometimes have to mock React Router to check if we have the right location, or other shenanigans.
 
-```
+```tsx
 import React from "react";
 import { useLocation } from "react-router";
 import { mockRouter } from "utils/tests/mocks";
@@ -103,7 +103,7 @@ describe('<MyComponent />', () => {
 
 We have many very complex components requiring a lot of dependencies, sometimes we need to cut those to just make sure we have what we need. We can mock those.
 
-```
+```tsx
 import React from "react";
 import { screen } from "@testing-library/react";
 import { mockComponent } from "utils/tests/mock";
