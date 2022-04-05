@@ -1,7 +1,7 @@
-import React from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-import Ex02 from "./";
+import { Ex02 } from "./";
 
 describe("Ex02", () => {
   it("should render the component in itself, not the loading page", async () => {
@@ -23,7 +23,7 @@ describe("Ex02", () => {
     });
     const button = screen.getByRole("button");
 
-    fireEvent.click(button);
+    userEvent.click(button);
     expect(mockOnButtonClick).toHaveBeenCalled();
   });
 
@@ -35,7 +35,7 @@ describe("Ex02", () => {
     });
     const input = screen.getByRole("textbox");
 
-    fireEvent.change(input, { target: { value: "Changed" } });
+    userEvent.type(input, "Changed");
     expect(input).toHaveValue("Changed");
     expect(screen.getByText("My name is Changed")).toBeInTheDocument();
   });

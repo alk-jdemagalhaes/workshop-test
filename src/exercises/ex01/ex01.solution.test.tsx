@@ -1,11 +1,10 @@
-import React from "react";
 import { render } from "@testing-library/react";
 
-import Ex01 from "./";
+import { Ex01 } from "./";
 
 describe("Ex01 : Basic rendering and testing", () => {
   beforeEach(() => {
-    expect.hasAssertions();
+    //expect.hasAssertions();
   });
 
   it('should find in the Ex01 Component, the text: "Hello World !"', () => {

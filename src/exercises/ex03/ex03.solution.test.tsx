@@ -1,13 +1,13 @@
-import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import {
   mockComponent,
   mockRouter,
   mockProvider,
   mockProviderWithStore,
 } from "./mocks";
+import userEvent from "@testing-library/user-event";
 
-import Ex03 from "./";
+import { Ex03 } from "./";
 
 jest.mock("./superbigcomponent", () => ({
   Superbigcomponent: mockComponent("SuperBigMocked"),
@@ -30,7 +30,7 @@ describe("Ex03", () => {
     const screen = render(element);
 
     const button = screen.getByRole("button");
-    fireEvent.click(button);
+    userEvent.click(button);
     expect(store.getActions()).toEqual([{ type: "DISPATCHING" }]);
   });
 

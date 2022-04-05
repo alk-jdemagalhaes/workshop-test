@@ -1,5 +1,3 @@
-import React from "react";
-
 const Ex01 = () => {
   return (
     <div>
@@ -13,4 +11,4 @@ const Ex01 = () => {
   );
 };
 
-export default Ex01;
+export { Ex01 };

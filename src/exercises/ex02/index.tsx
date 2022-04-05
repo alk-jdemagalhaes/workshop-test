@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 
 const Ex02 = ({ onButtonClick = () => {} }) => {
@@ -31,4 +30,4 @@ const Ex02 = ({ onButtonClick = () => {} }) => {
   );
 };
 
-export default Ex02;
+export { Ex02 };

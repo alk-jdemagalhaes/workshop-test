@@ -1,11 +1,12 @@
 import React from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-import Ex02 from "./";
+import { Ex02 } from "./";
 
 describe("Ex02", () => {
   beforeEach(() => {
-    expect.hasAssertions();
+    //expect.hasAssertions();
   });
 
   it("should check if the component is loaded", async () => {

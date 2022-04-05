@@ -10,20 +10,18 @@ Testing library is a containing many utilities for (you guessed it) testing. The
 
 ## A basic test
 
-```
+```tsx
 import React from "react";
 import { screen, render } from "@testing-library/react";
 
-const MyComponent = () => (
-    <div>Hello World!</div>
-);
+const MyComponent = () => <div>Hello World!</div>;
 
 describe("<MyComponent />", () => {
-    it("Should render and show the component", () => {
-        render(<MyComponent />);
+  it("Should render and show the component", () => {
+    render(<MyComponent />);
 
-        expect(screen.getByText('Hello World!')).toBeInTheDocument();
-    });
+    expect(screen.getByText("Hello World!")).toBeInTheDocument();
+  });
 });
 ```
 
@@ -42,7 +40,7 @@ In order to test what we need, we use the different selectors that `screen` offe
 
 https://testing-library.com/docs/queries/about/
 
-## Other shenanigans
+## Other useful methods
 
 `screen.debug()` is useful to see what's going on in your render.
 

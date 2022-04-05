@@ -1,4 +1,3 @@
-import React from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { BrowserRouter } from "react-router-dom";
@@ -32,4 +31,4 @@ const Ex03 = () => {
   );
 };
 
-export default Ex03;
+export { Ex03 };

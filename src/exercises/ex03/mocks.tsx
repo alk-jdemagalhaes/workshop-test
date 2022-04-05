@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 import { fireEvent, getByTestId } from "@testing-library/react";
 import { curry, flow } from "lodash/fp";
 import { Component, createElement, forwardRef, ReactNode } from "react";

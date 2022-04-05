@@ -1,16 +1,17 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import {
   mockComponent,
   mockRouter,
   mockProvider,
   mockProviderWithStore,
 } from "./mocks";
+import userEvent from "@testing-library/user-event";
 
-import Ex03 from "./";
+import { Ex03 } from "./";
 
 describe("Ex03", () => {
   beforeEach(() => {
-    expect.hasAssertions();
+    //expect.hasAssertions();
   });
 
   it("should render with a defined state", () => {

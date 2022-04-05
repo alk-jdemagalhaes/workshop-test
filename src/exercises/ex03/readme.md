@@ -15,18 +15,18 @@ import { mockProvider } from "utils/tests/mocks";
 import { useSelector } from "react-redux";
 
 const MyComponent = () => {
-    const user = useSelector(state => state.user);
-    return (<div>{user}</div>);
+  const user = useSelector((state) => state.user);
+  return <div>{user}</div>;
 };
 
 describe("<MyComponent />", () => {
-    it("should show the username", () => {
-        const state = { user: "admin" };
-        const connectedComponent = mockProvider(state, <MyComponent />);
-        render(connectedComponent);
+  it("should show the username", () => {
+    const state = { user: "admin" };
+    const connectedComponent = mockProvider(state, <MyComponent />);
+    render(connectedComponent);
 
-        expect(screen.getByText("admin")).toBeInTheDocument();
-    });
+    expect(screen.getByText("admin")).toBeInTheDocument();
+  });
 });
 ```
 
@@ -43,26 +43,30 @@ import React from "react";
 import { screen } from "@testing-library/react";
 import { mockProvider } from "utils/tests/mocks";
 import { useDispatch } from "react-redux";
+import userEvent from "@testing-library/user-event";
 
 const MyComponent = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    return (
-      <button onClick={() => dispatch({ type: "DISPATCHING" })}>
-        Click me !
-      </button><button onClick={() => dispatch({}></button>
-    );
+  return (
+    <button onClick={() => dispatch({ type: "DISPATCHING" })}>
+      Click me !
+    </button>
+  );
 };
 
 describe("<MyComponent />", () => {
-    it("should show the username", () => {
-        const [connectedComponent, store] = mockProviderwithStore(state, <MyComponent />);
-        render(connectedComponent);
+  it("should show the username", () => {
+    const [connectedComponent, store] = mockProviderwithStore(
+      state,
+      <MyComponent />
+    );
+    render(connectedComponent);
 
-        const button = screen.getByRole("button");
-        fireEvent.click(button);
-        expect(store.getActions()).toEqual([{ type: "DISPATCHING" }]);
-    });
+    const button = screen.getByRole("button");
+    userEvent.click(button);
+    expect(store.getActions()).toEqual([{ type: "DISPATCHING" }]);
+  });
 });
 ```
 
@@ -80,19 +84,17 @@ import { useLocation } from "react-router";
 import { mockRouter } from "utils/tests/mocks";
 
 const MyComponent = () => {
-    const location = useLocation();
-    return (
-        <div>{location?.pathname}</div>
-    );
+  const location = useLocation();
+  return <div>{location?.pathname}</div>;
 };
 
-describe('<MyComponent />', () => {
-   it('should show the location from react-redux', () => {
-        const routedComponent = mockRouter({}, <MyComponent />);
-        render(routedComponent);
+describe("<MyComponent />", () => {
+  it("should show the location from react-redux", () => {
+    const routedComponent = mockRouter({}, <MyComponent />);
+    render(routedComponent);
 
-        expect(screen.getByText("/")).toBeInTheDocument();
-   });
+    expect(screen.getByText("/")).toBeInTheDocument();
+  });
 });
 ```
 
@@ -127,3 +129,53 @@ describe("<MyComponent />", () => {
 - `mockComponent` will return an empty component, with an attribute `data-test-id` according to the value sent.
 - We can then use `screen.getByTestId()` to verify that it has been mocked correctly.
 - No more big component, instead a light one with an ID to test it !
+
+## Clearing mocks
+
+One thing important to note when you'll use mocks within Jest, is that you'll need to clear them from time to time, especially if you use them in differents parts of your test. Indeed, they are persistent. For example :
+
+```tsx
+const mockedFunc = jest.fn();
+
+describe("SimpleTest", () => {
+  it("should be called one time with this param", () => {
+    mockedFunc(123);
+    expect(mockedFunc).toHaveBeenCalledTimes(1);
+    expect(mockedFunc).toHaveBeenCalledWith(123);
+  });
+
+  it("should be called one time with this other param", () => {
+    expect(mockedFunc).toHaveBeenCalledWith(123); // Oops, it works ! That's because the code has been run upwards and kept the data.
+    mockedFunc(456);
+    expect(mockedFunc).toHaveBeenCalledTimes(1);
+    expect(mockedFunc).toHaveBeenCalledWith(456);
+  });
+});
+```
+
+You'll get an error. You can use the method `.mockClear()` on your mocked function to clear it. We have an utility `clearMocks` in the front-productstream that will take all mocks and clear them.
+
+```tsx
+import { clearMocks } from "utils/tests/mocks";
+
+const mockedFunc = jest.fn();
+
+describe("SimpleTest", () => {
+  afterEach(() => {
+    clearMocks(mockedFunc);
+  });
+
+  it("should be called one time with this param", () => {
+    mockedFunc(123);
+    expect(mockedFunc).toHaveBeenCalledTimes(1);
+    expect(mockedFunc).toHaveBeenCalledWith(123);
+  });
+
+  it("should be called one time with this other param", () => {
+    expect(mockedFunc).toHaveBeenCalledWith(123); // This test will fail because it has been cleared after the first test has been run.
+    mockedFunc(456);
+    expect(mockedFunc).toHaveBeenCalledTimes(1);
+    expect(mockedFunc).toHaveBeenCalledWith(456);
+  });
+});
+```
