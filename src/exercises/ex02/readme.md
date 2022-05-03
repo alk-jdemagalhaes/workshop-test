@@ -56,14 +56,14 @@ const MyComponent = () => {
 };
 
 describe('<MyComponent />', () => {
-    it('should display the name, and change it', () => {
+    it('should display the name, and change it', async () => {
         render(<MyComponent />);
 
         const button = screen.getByRole('button');
         const input = screen.getByRole('textbox');
-        userEvent.click(button);
+        await userEvent.click(button);
         expect(screen.getByText("Default")).toBeInTheDocument();
-        userEvent.type(input, "MyName"));
+        await userEvent.type(input, "MyName"));
         expect(screen.getByText("MyName")).toBeIntheDocument();
     }
 });

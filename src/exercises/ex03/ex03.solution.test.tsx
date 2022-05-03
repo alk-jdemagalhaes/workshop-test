@@ -21,7 +21,7 @@ describe("Ex03", () => {
     expect(screen.getByText("Bonjour admin")).toBeInTheDocument();
   });
 
-  it("should dispatch an action", () => {
+  it("should dispatch an action", async () => {
     const state = { user: "admin" };
     const [element, store] = mockProviderWithStore(
       state,
@@ -30,7 +30,7 @@ describe("Ex03", () => {
     const screen = render(element);
 
     const button = screen.getByRole("button");
-    userEvent.click(button);
+    await userEvent.click(button);
     expect(store.getActions()).toEqual([{ type: "DISPATCHING" }]);
   });
 

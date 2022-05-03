@@ -23,7 +23,7 @@ describe("Ex02", () => {
     });
     const button = screen.getByRole("button");
 
-    userEvent.click(button);
+    await userEvent.click(button);
     expect(mockOnButtonClick).toHaveBeenCalled();
   });
 
@@ -35,7 +35,7 @@ describe("Ex02", () => {
     });
     const input = screen.getByRole("textbox");
 
-    userEvent.type(input, "Changed");
+    await userEvent.type(input, "Changed");
     expect(input).toHaveValue("Changed");
     expect(screen.getByText("My name is Changed")).toBeInTheDocument();
   });
