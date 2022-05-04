@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import {
   mockComponent,
   mockRouter,
@@ -7,22 +7,22 @@ import {
 } from "./mocks";
 import userEvent from "@testing-library/user-event";
 
-import { Ex03 } from "./";
+import { Ex03 } from "./ex03";
 
-jest.mock("./superbigcomponent", () => ({
-  Superbigcomponent: mockComponent("SuperBigMocked"),
+jest.mock("./shrek", () => ({
+  ShrekMovie: mockComponent("ShrekMovie"),
 }));
 
 describe("Ex03", () => {
   it("should render with a defined state", () => {
-    const state = { user: "admin" };
+    const state = { user: "Syg", likes: 0 };
     const screen = render(mockProvider(state, mockRouter({}, <Ex03 />)));
 
-    expect(screen.getByText("Bonjour admin")).toBeInTheDocument();
+    expect(screen.getByText("Bonjour Syg")).toBeInTheDocument();
   });
 
   it("should dispatch an action", async () => {
-    const state = { user: "admin" };
+    const state = { user: "Syg", likes: 0 };
     const [element, store] = mockProviderWithStore(
       state,
       mockRouter({}, <Ex03 />)
@@ -31,21 +31,19 @@ describe("Ex03", () => {
 
     const button = screen.getByRole("button");
     await userEvent.click(button);
-    expect(store.getActions()).toEqual([{ type: "DISPATCHING" }]);
+    expect(store.getActions()).toEqual([{ type: "LIKE" }]);
   });
 
   it("should render with the router and the store", () => {
     const screen = render(mockProvider({}, mockRouter({}, <Ex03 />)));
 
-    expect(screen.getByText("Router is : /")).toBeDefined();
+    expect(screen.getByText("You're currently at : /")).toBeDefined();
   });
 
-  it("should have the superbigcomponent mocked", () => {
+  it("should have the shrek movie mocked", () => {
     const screen = render(mockProvider({}, mockRouter({}, <Ex03 />)));
 
-    expect(
-      screen.queryByText("Im super big ! Dont render me!")
-    ).not.toBeInTheDocument();
-    expect(screen.getByTestId("SuperBigMocked")).toBeInTheDocument();
+    expect(screen.queryByText("Enjoy Shrek !")).not.toBeInTheDocument();
+    expect(screen.getByTestId("ShrekMovie")).toBeInTheDocument();
   });
 });

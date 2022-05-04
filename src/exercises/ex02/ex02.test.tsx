@@ -2,7 +2,7 @@ import React from "react";
 import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { Ex02 } from "./";
+import { Ex02 } from "./ex02";
 
 describe("Ex02", () => {
   beforeEach(() => {

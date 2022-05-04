@@ -1,34 +1,24 @@
-import { Provider, useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router";
-import { BrowserRouter } from "react-router-dom";
-import { createStore } from "redux";
-import { Superbigcomponent } from "./superbigcomponent";
+import raw from "raw.macro";
+import { Markdown } from "../../Markdown";
+import { Ex03Framework } from "./ex03";
 
-const Ex03Framework = () => {
+const Ex03Page = () => {
   return (
-    <Provider store={createStore((state = { user: "" }, action) => {})}>
-      <BrowserRouter>
-        <Ex03 />
-      </BrowserRouter>
-    </Provider>
+    <>
+      <Markdown markdown={raw("./readme.md")} />
+      <div>
+        <div className="instructions">
+          Now that we're connected to our super secret website, we can see the
+          Shrek movie in all his 40Mb glory, but we might now want to test that
+          ! First, make sure we have a defined state, with an user and likes.
+          then, test if our dispatch works and increases the likes. Check if
+          we're currently at the right route : ex03. But watch out, and don't
+          actually render the movie ! Make sure your component is mocked.
+        </div>
+        <Ex03Framework />
+      </div>
+    </>
   );
 };
 
-const Ex03 = () => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const user = useSelector((state: any) => state.user);
-
-  return (
-    <div>
-      <Superbigcomponent />
-      <span>Bonjour {user}</span>
-      <span>Router is : {`${location?.pathname}`}</span>
-      <button onClick={() => dispatch({ type: "DISPATCHING" })}>
-        Click me !
-      </button>
-    </div>
-  );
-};
-
-export { Ex03 };
+export { Ex03Page };

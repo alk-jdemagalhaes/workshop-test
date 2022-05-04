@@ -29,3 +29,25 @@ This is all we need to have a complete test set. Let's break it down :
 - The resulting variable is your finalized state ! You can now test away !
 
 This is basically how Redux works, with this state saved somewhere so you can pull it later !
+
+## An important note about Reducers
+
+Reducers will compare the old and new object, and will need a completely new object to render the variables it contains again. What this means is :
+
+```tsx
+const reducer = (state = initialState, action: any) => {
+  state.foo = "new stuff";
+
+  return state;
+};
+```
+
+This will NOT trigger another render, because the state signature is still the same. What you need to do in order to trigger a render is to create a new object based on the old state, like so :
+
+```tsx
+const reducer = (state = initialState, action: any) => {
+  return { ...state, foo: "new stuff" };
+};
+```
+
+With the new signature, now it will retrigger. This is also useful if your component needs to NOT rerender, but need a reducer check. Simply return `state` and it will not rerender: the signature is the same.

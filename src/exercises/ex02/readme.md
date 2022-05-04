@@ -2,7 +2,7 @@
 
 ## Async stuff, input stuff
 
-One of the big strength of @testing-library/react is to have tests that are intuitive to read if we have async components, or components with inputs, thanks to 2 methods : `waitFor` and `userEvent`.
+One of the big strength of `@testing-library/react` is to have tests that are intuitive to read if we have async components, or components with inputs, thanks to 2 methods : `waitFor` and `userEvent`.
 
 ## WaitFor
 
@@ -28,7 +28,7 @@ describe("<MyComponent />", () => {
 });
 ```
 
-- Import `waitFor` from @testing-library/react,
+- Import `waitFor` from `@testing-library/react`,
 - Put any `expect` requiring async loading within the `waitFor` callback,
 - The tests are linear, which means any test after the `waitFor` are going to be with after any async loading !
 - See the doc : https://testing-library.com/docs/dom-testing-library/api-async/#waitfor
@@ -69,6 +69,6 @@ describe('<MyComponent />', () => {
 });
 ```
 
-- Here, we can see that we need to target the right DOM element with our `screen` selector, then use an action with `userEvent`
+- Here, we can see that we need to target the right DOM element with our `screen` selector, then use an action with redux-saga-test-plan`userEvent`
 - `click` simply clicks on the DOM element, while `type` acts like the user typed in the targeted element.
 - See the doc : https://testing-library.com/docs/dom-testing-library/api-events/

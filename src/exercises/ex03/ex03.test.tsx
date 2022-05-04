@@ -7,7 +7,7 @@ import {
 } from "./mocks";
 import userEvent from "@testing-library/user-event";
 
-import { Ex03 } from "./";
+import { Ex03 } from "./ex03";
 
 describe("Ex03", () => {
   beforeEach(() => {

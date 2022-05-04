@@ -1,33 +1,22 @@
-import { useEffect, useState } from "react";
+import raw from "raw.macro";
+import { Markdown } from "../../Markdown";
+import { Ex02 } from "./ex02";
 
-const Ex02 = ({ onButtonClick = () => {} }) => {
-  const [loading, setLoading] = useState(true);
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 800);
-  }, []);
-
+const Ex02Page = () => {
   return (
-    <div>
-      {loading ? (
-        <div>Loading</div>
-      ) : (
-        <div data-testid="ex02">
-          <span>My Component</span>
-          <button onClick={onButtonClick}>Click me</button>
-          <input
-            type="text"
-            placeholder="My Input"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <span>My name is {name}</span>
+    <>
+      <Markdown markdown={raw("./readme.md")} />
+      <div>
+        <div className="instructions">
+          For this exercise, you need to make sure to wait for the components to
+          load, then test that input are working correctly, then test if the
+          sending button sends your right functions and that the end result do
+          show up.
         </div>
-      )}
-    </div>
+        <Ex02 />
+      </div>
+    </>
   );
 };
 
-export { Ex02 };
+export { Ex02Page };

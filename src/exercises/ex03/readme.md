@@ -2,7 +2,7 @@
 
 ## Our mocks against React Router, Redux, and large components
 
-One of the complexity in testing is making sure we have the right state and location on our app. We are using simple mocks to (you guessed it) mock what we need for our test. As long as you have the right parameters, the rest of the Redux state won't matter. If it becomes too convoluted, you might need to scope or mock components further. Note that those are utilities within our front-productstream and not from @testing-library/react.
+One of the complexity in testing is making sure we have the right state and location on our app. We are using simple mocks to (you guessed it) mock what we need for our test. As long as you have the right parameters, the rest of the Redux state won't matter. If it becomes too convoluted, you might need to scope or mock components further. Note that those are utilities within our front-productstream and not from `@testing-library/react`.
 
 ## Redux and defined state
 
@@ -100,6 +100,7 @@ describe("<MyComponent />", () => {
 
 - Just like `mockProvider`, we slot `mockProvider` alongside our component.
 - Render it just like normal. We got `location` and all router functions populated !
+- If you have some weird problems with `mockRouter`, try to wrap your component inside a `<Route />` component. This will ensure your component matches perfectly what should be in the stack.
 
 ## Mocking large components
 

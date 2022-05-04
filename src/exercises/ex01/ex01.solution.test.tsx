@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 
-import { Ex01 } from "./";
+import { Ex01 } from "./ex01";
 
 describe("Ex01 : Basic rendering and testing", () => {
   beforeEach(() => {

@@ -11,8 +11,8 @@ export function* fetchUserSaga(action: any) {
   yield put(startLoading);
 
   const response: { user: any } = yield call(fetchUserApi, action.payload);
-
   yield put(fetchUserReceive(response.user));
+  yield put({ type: "RANDOMIZER" });
   yield put(stopLoading);
 }
 
