@@ -17,5 +17,5 @@ describe("Ex01 : Basic rendering and testing", () => {
 
   it('should find in the Ex01 Component, the <div> with data-testid="Test1"', () => {});
 
-  it('should NOT find in the Ex01 Component, the <div> with data-testid="Test2', () => {});
+  it('should NOT find in the Ex01 Component, the <div> with data-testid="Test2"', () => {});
 });

@@ -1,7 +1,7 @@
 import raw from "raw.macro";
 import { Markdown } from "../../Markdown";
 
-const JestCommands = () => {
+const OldCodeHandling = () => {
   return (
     <>
       <Markdown markdown={raw("./readme.md")} />
@@ -9,4 +9,4 @@ const JestCommands = () => {
   );
 };
 
-export { JestCommands };
+export { OldCodeHandling };

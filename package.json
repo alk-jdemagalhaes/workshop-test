@@ -41,7 +41,12 @@
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "jest": "jest"
+    "jest": "jest",
+    "jest:watch": "npm run jest -- --watch --verbose false",
+    "jest:cov": "npm run jest -- --coverage",
+    "jest:branch": "npm run jest -- --changedSince staging",
+    "jest:changed": "npm run jest -- --onlyChanged",
+    "jest:last": "npm run jest -- --lastCommit"
   },
   "eslintConfig": {
     "extends": [
