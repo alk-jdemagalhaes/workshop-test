@@ -1,16 +1,15 @@
-import React from "react";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Ex01Page } from "./exercises/ex01";
 import { Ex02Page } from "./exercises/ex02";
 import { Ex03Page } from "./exercises/ex03";
 import { Ex04Page } from "./exercises/ex04";
 import { Ex05Page } from "./exercises/ex05";
 import { Ex06Page } from "./exercises/ex06";
-import { JestCommands } from "./wiki/jest-commands";
 import { GoodCoverage } from "./wiki/good-coverage";
+import { JestCommands } from "./wiki/jest-commands";
 import { OldCodeHandling } from "./wiki/old-code-handling";
 import { Sonarcloud } from "./wiki/sonarcloud";
+import { Introduction } from "./wiki/introduction";
 
 function App() {
   return (
@@ -18,6 +17,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <div>
+            <Link to="/intro">Intro</Link>
             <Link to="/jest-commands">Jest Commands</Link>
             <Link to="/good-coverage">Good Coverage</Link>
             <Link to="/old-code-handling">Old Code Handling</Link>
@@ -43,7 +43,8 @@ function App() {
             <Route path="/jest-commands" element={<JestCommands />} />
             <Route path="/good-coverage" element={<GoodCoverage />} />
             <Route path="/old-code-handling" element={<OldCodeHandling />} />
-            <Route path="/sonarcloud" element={<Sonarcloud />} />
+            <Route path="/sonarcloud" element={<Sonarcloud />} />{" "}
+            <Route path="/intro" element={<Introduction />} />
           </Routes>
         </div>
       </div>
